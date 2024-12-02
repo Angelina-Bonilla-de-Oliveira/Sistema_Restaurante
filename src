@@ -1,0 +1,55 @@
+create database Restaurante;
+use Restaurante; 
+
+create table Clientes (
+id_Cliente int auto_increment primary key,
+nome varchar(100) not null,
+telefone varchar(15) not null
+);
+
+create table Pratos (
+id_Prato int auto_increment primary key,
+nome varchar(50) not null,
+preco decimal(5, 2) not null
+);
+
+create table Pedidos (
+id_Pedido int auto_increment primary key,
+id_Cliente int,
+data_pedido date,
+foreign key (id_Cliente) references Clientes(id_Cliente)
+);
+
+create table Item (
+id_Item int auto_increment primary key,
+tipo_item varchar(50),
+preco_item decimal(5, 2) not null,
+id_Pedido int,
+quantidade int,
+foreign key (id_Pedido) references Pedidos(id_Pedido)
+);
+
+insert into Clientes (nome, telefone) values
+('Joana Nunes', '99 01234-5678'),
+('Marcos Andrade', '11 22334-4556'),
+('Lucas Santos', ' 22 33445-5667'),
+('Gabriel Amorim', ' 33 44556-6778'),
+('Magnólia Lia Leopoldina', '44 55667-7889');
+
+insert into Pratos (nome, preco) values
+('A la minuta', '15.00'),
+('Bife a milanesa', '15.00'),
+('Frango a milanesa', '14.00'),
+('Frango grelhado', '14.00'),
+('Escondidinho de carne seca', '20.00');
+
+insert into Pedidos (data_pedido) values 
+('2024-12-01'),
+('2024-12-01'),
+('2024-12-01');
+
+insert into Item (tipo_item, preco_item, quantidade) values
+('Água c/gás', '4.00', 1),
+('Guaraná 400ml', '4.50', 1),
+('Chá leão pêssego', '4.50', 1),
+('Coca-Cola 600ml', '4.99', 1);
